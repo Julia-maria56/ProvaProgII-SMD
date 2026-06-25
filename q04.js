@@ -18,29 +18,36 @@
 
 
 function dotProductMatrizes(matrizA, matrizB) { // função que recebe as duas matrizes
-    let resultado = []; // nova matriz
-    for (let i = 0; i < matrizA.length; i++) { // Percorre as linhas da matrizA
-        //i representa a linha da matriz. No caso,
-        //matrizA = [[1,2],[3,4]]; [1,2] => i = 0; [3,4] => i = 1
-        resultado[i] = [];
-        for (let j = 0; j < matrizB[0].length; j++) { 
-            // Aqui, para cada linha percorrida da matriz A, j vai simbolizar a coluna de matriz B
-            // matrizB B = [[5,6],[7,8]] => [5,7] => j = 0; [6,8] => j = 1;
-            
-            let soma = 0;
+    if (!Array.isArray(matrizA) || !Array.isArray(matrizB)){
+        console.log("Digite uma matriz de números!")
+        return false;
+    } else{
 
-            for (let k = 0; k < matrizA[0].length; k++) {
-                if(typeof matrizA[i][k] !== "number" || typeof matrizB[k][j] !== "number" ){
-                return false;
-            } 
-                // Quando k = 0 => matrizA[0][0] * matrizB[0][0] = 1 * 5 = 5
-                // Quando k = 1 => matrizA[0][1] * matrizB[1][0] = 2 * 7 = 14
-                soma += matrizA[i][k] * matrizB[k][j];
-             }
-            resultado[i][j] = soma;
+        let resultado = []; // nova matriz
+        for (let i = 0; i < matrizA.length; i++) { // Percorre as linhas da matrizA
+            //i representa a linha da matriz. No caso,
+            //matrizA = [[1,2],[3,4]]; [1,2] => i = 0; [3,4] => i = 1
+            resultado[i] = [];
+            for (let j = 0; j < matrizB[0].length; j++) { 
+                // Aqui, para cada linha percorrida da matriz A, j vai simbolizar a coluna de matriz B
+                // matrizB B = [[5,6],[7,8]] => [5,7] => j = 0; [6,8] => j = 1;
+                
+                let soma = 0;
+    
+                for (let k = 0; k < matrizA[0].length; k++) {
+                    if(typeof matrizA[i][k] !== "number" || typeof matrizB[k][j] !== "number"){
+                    console.log("Digite uma matriz de números!")
+                    return false;
+                } 
+                    // Quando k = 0 => matrizA[0][0] * matrizB[0][0] = 1 * 5 = 5
+                    // Quando k = 1 => matrizA[0][1] * matrizB[1][0] = 2 * 7 = 14
+                    soma += matrizA[i][k] * matrizB[k][j];
+                 }
+                resultado[i][j] = soma;
+            }
         }
+        return resultado;
     }
-    return resultado;
 }
 
 // Quando i = 0:
@@ -59,25 +66,69 @@ function dotProductMatrizes(matrizA, matrizB) { // função que recebe as duas m
 //resultado [i][j] = soma => No caso, soma = 19 e i = 0 e j = 0.
 
 
-// matrizA= [
+// ===== TESTES =====
+
+// let matrizA= [
 //     [1,2],
 //     [3,4]
 // ];
 
-// matrizB= [
+// let matrizB= [
 //     [5,6],
 //     [7,8]
 // ];
 // console.log(dotProductMatrizes(matrizA, matrizB));
-// [ [ 19, 22 ], [ 43, 50 ] ]
+//[ [ 19, 22 ], [ 43, 50 ] ]
 
-matrizA= [
-    [1,2],
-    [3,4]
-];
 
-matrizB= [
-    [5,6],
-    [7,8]
-];
-console.log(dotProductMatrizes(matrizA, matrizB));
+
+// let matrizA= [
+//     ["Teste com array",2],
+//     [3,4]
+// ];
+
+// let matrizB= [
+//     [5,6],
+//     [7,8]
+// ];
+// console.log(dotProductMatrizes(matrizA, matrizB));
+// false
+
+
+
+// let matrizA= [
+//     "Teste"
+// ];
+
+// let matrizB= [
+//     "Teste"
+// ];
+// console.log(dotProductMatrizes(matrizA, matrizB));
+// Digite uma matriz de números!
+// false
+
+
+
+// let matrizA = 12;
+
+// let matrizB= [
+//     [5,6],
+//     [7,8]
+// ];
+// console.log(dotProductMatrizes(matrizA, matrizB));
+//Digite uma matriz de números!
+//false
+
+
+
+// let matrizA= [
+//     [14,22],
+//     [3,47]
+// ];
+
+// let matrizB= [
+//     [5,16],
+//     [77,8]
+// ];
+// console.log(dotProductMatrizes(matrizA, matrizB));
+//[ [ 1764, 400 ], [ 3634, 424 ] ]
